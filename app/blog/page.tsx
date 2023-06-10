@@ -1,20 +1,26 @@
+"use client";
+
+import { getAllPosts } from "@/servises/getPosts";
 import { Metadata } from "next";
-import Link from "next/link";
+// import Link from "next/link";
+import { useEffect, useState } from "react";
 
-async function getData() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    headers: {
-      connection: "close",
-    },
-    next: {
-      revalidate: 120,
-    },
-  });
+import { Posts } from "@/components/Posts";
 
-  if (!response.ok) throw new Error("Unable to fetch posts!");
+// async function getData() {
+//   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+//     headers: {
+//       connection: "close",
+//     },
+//     next: {
+//       revalidate: 120,
+//     },
+//   });
 
-  return response.json();
-}
+//   if (!response.ok) throw new Error("Unable to fetch posts!");
+
+//   return response.json();
+// }
 
 export const metadata: Metadata = {
   title: "Blog | Blog App",
@@ -22,18 +28,31 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-  const posts = await getData();
+  // const posts = await getData();
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllPosts()
+      .then(setPosts)
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
       <h1>Blog page</h1>
-      <ul>
-        {posts.map((post: any) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        // <ul>
+        //   {posts.map((post: any) => (
+        //     <li key={post.id}>
+        //       <Link href={`/blog/${post.id}`}>{post.title}</Link>
+        //     </li>
+        //   ))}
+        // </ul>
+        <Posts posts={posts} />
+      )}
     </>
   );
 }

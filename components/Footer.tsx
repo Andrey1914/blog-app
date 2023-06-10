@@ -1,9 +1,5 @@
 const Footer = () => {
-    return (
-        <footer>
-            Created by &copy; Andrey1914
-        </footer>
-    )
-}
+  return <footer className="container">Created by &copy; Andrey1914</footer>;
+};
 
-export {Footer};
+export { Footer };

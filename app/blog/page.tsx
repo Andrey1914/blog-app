@@ -40,8 +40,6 @@
 // }
 
 // ---------------------------(2variant)------------------------------------
-"use client";
-
 import { Metadata } from "next";
 import { Posts } from "@/components/Posts";
 import { PostSearch } from "@/components/PostSearch";

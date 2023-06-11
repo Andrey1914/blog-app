@@ -1,5 +1,12 @@
 export const getAllPosts = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    headers: {
+      connection: "close",
+    },
+    next: {
+      revalidate: 120,
+    },
+  });
 
   if (!response.ok) throw new Error("Unable to fetch posts.");
 

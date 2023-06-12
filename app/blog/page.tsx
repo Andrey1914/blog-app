@@ -39,7 +39,7 @@
 //   );
 // }
 
-// ---------------------------(2variant)------------------------------------
+// ---------------------------(2 variant with zustand and swr)------------------------------------
 import { Metadata } from "next";
 import { Posts } from "@/components/Posts";
 import { PostSearch } from "@/components/PostSearch";

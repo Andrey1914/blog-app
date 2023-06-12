@@ -157,6 +157,8 @@ main a:hover {
 form {
   display: flex;
   justify-content: center;
+  padding: 20px 0;
+  gap: 20px;
 }
 
 form button {
@@ -164,8 +166,12 @@ form button {
   cursor: pointer;
   color: white;
   border: none;
+  padding: 0 10px;
 }
 
 input[type="search"] {
   padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-bg);
+  outline: none;
 }
